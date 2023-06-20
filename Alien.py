@@ -58,6 +58,7 @@ class Player:
         self.level = 1
         self.level_bonuses = [False]*51  # Initialize a list of 51 False, one for each level until 50
         self.achievements = []
+        self.total_xp = 0  # Initialize total XP
         self.reset()
 
     def reset(self) -> None:
@@ -204,6 +205,7 @@ class Player:
 
     def add_xp(self, amount: int) -> None:
         self.xp += amount
+        self.total_xp += amount  # Update total XP
         self.level_up()  # Appel de la méthode level_up() après l'ajout d'XP
 
     def print_commands(self) -> None:
@@ -301,7 +303,7 @@ class Player:
         print("Player Stats:")
         print(f"Name: {self.name}")
         print(f"Level: {self.level}")
-        print(f"XP: {self.xp} sur {Player.xp_requirements[self.level]}")
+        print(f"XP: {self.xp} sur {Player.xp_requirements[self.level]}, xp total: {self.total_xp}")
         print(f"HP: {self.calculate_max_hp()}")
         print(f"Attack: {self.calculate_atk()}")
         print(f"Defense: {self.calculate_defense()}")
@@ -606,27 +608,27 @@ def init_monsters() -> Dict[str, List[Monster]]:
     """Initialize the monsters."""
     # Alien Noob
     alien_noob_1 = Monster("Eclair", 110, 13, 0, 5,xp_reward=25)
-    alien_noob_2 = Monster("Crocus", 110, 15, 0, 5,xp_reward=25)
-    alien_noob_3 = Monster("Lunaris", 110, 18, 0, 5,xp_reward=25)
+    alien_noob_2 = Monster("Crocus", 110, 15, 0, 5,xp_reward=24)
+    alien_noob_3 = Monster("Lunaris", 110, 18, 0, 5,xp_reward=26)
     alien_noob_4 = Monster("Voltaic", 90, 25, 0, 5, crit_chance=0.1, crit_damage=1.4,xp_reward=30)
 
     # Alien ça va
-    alien_cava_1 = Monster("Petalo", 450, 30, 10, 25,xp_reward=90)
-    alien_cava_2 = Monster("Gloo", 500, 33, 10, 25,xp_reward=90)
-    alien_cava_3 = Monster("Vaporis", 600, 40, 10, 25,xp_reward=90)
+    alien_cava_1 = Monster("Petalo", 450, 30, 10, 25,xp_reward=91)
+    alien_cava_2 = Monster("Gloo", 500, 33, 10, 25,xp_reward=89)
+    alien_cava_3 = Monster("Vaporis", 600, 40, 10, 25,xp_reward=92)
     alien_cava_4 = Monster("Foudro", 300, 60, 10, 25, crit_chance=0.1, crit_damage=1.4,xp_reward=90)
 
     # Alien Easy & Normal
-    alien_normal_1 = Monster("Wakashoko", 1400, 50, 25, 80,xp_reward=750)
-    alien_normal_2 = Monster("Hans", 1600, 60, 25, 80,xp_reward=750)
-    alien_normal_3 = Monster("Glimmer", 1300, 70, 25, 80, crit_chance=0.05, crit_damage=1.2,xp_reward=750)
+    alien_normal_1 = Monster("Wakashoko", 1400, 50, 25, 80,xp_reward=752)
+    alien_normal_2 = Monster("Hans", 1600, 60, 25, 80,xp_reward=751)
+    alien_normal_3 = Monster("Glimmer", 1300, 70, 25, 80, crit_chance=0.05, crit_damage=1.2,xp_reward=749)
 
     # Alien Medium & Hard
-    alien_medium_1 = Monster("Wis", 2150, 105, 50, 140, crit_chance=0.07, crit_damage=1.4, xp_reward=2300)
-    alien_medium_2 = Monster("Gorgalon", 2300, 114, 50, 140, crit_chance=0.07, crit_damage=1.4, xp_reward=2300)
+    alien_medium_1 = Monster("Wis", 2150, 105, 50, 140, crit_chance=0.07, crit_damage=1.4, xp_reward=2301)
+    alien_medium_2 = Monster("Gorgalon", 2300, 114, 50, 140, crit_chance=0.07, crit_damage=1.4, xp_reward=2302)
     alien_medium_3 = Monster("Nebulus", 2100, 105, 50, 140, crit_chance=0.07, crit_damage=1.4, xp_reward=2300)
 
-    alien_hard_1 = Monster("Xant'ia", 4000, 150, 75, 200, crit_chance=0.09, crit_damage=1.5, xp_reward=6666)
+    alien_hard_1 = Monster("Xant'ia", 4000, 150, 75, 200, crit_chance=0.09, crit_damage=1.5, xp_reward=6661)
     alien_hard_2 = Monster("Zephyrus", 4150, 159, 75, 220, crit_chance=0.09, crit_damage=1.5, xp_reward=6666)
     alien_hard_3 = Monster("Aurora", 3900, 150, 75, 200, crit_chance=0.09, crit_damage=1.5, xp_reward=6666)
 
