@@ -563,7 +563,7 @@ def gobelin(player: Player) -> bool:
 def enutrof(player: Player) -> bool:
     return player.gold >= 10000
 
-#CanDisplay
+# affichage des succès
 def can_display_gobelin(player: Player) -> bool:
     return player.has_achievement('Poche')
 def can_display_enutrof(player: Player) -> bool:
