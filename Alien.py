@@ -280,7 +280,7 @@ class Player:
             xp_requirements.append(int(base_xp))
 
             if i < 10:
-                increase_percent = 1.10
+                increase_percent = 1.20
             elif i < 20:
                 increase_percent = 1.13
             elif i < 30:
