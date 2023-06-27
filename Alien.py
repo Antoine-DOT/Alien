@@ -489,7 +489,7 @@ def has_required_achievement(self, achievement: Achievement) -> bool:
             return ach.is_achieved
     return False
 
-def meteor_slayer(player: Player) -> bool:
+def meteor_guy(player: Player) -> bool:
     meteor_monsters = ["Eclair", "Crocus", "Lunaris", "Voltaic"]
     return all(player.get_kills(monster) > 0 for monster in meteor_monsters)
 def killed_10_crocus(player: Player) -> bool:
@@ -509,6 +509,47 @@ def killed_10_of_each_meteor_monster(player: Player) -> bool:
 def killed_100_meteor_monsters(player: Player) -> bool:
     meteor_monsters = ["Eclair", "Crocus", "Lunaris", "Voltaic"]
     return sum(player.get_kills(monster) for monster in meteor_monsters) >= 100
+
+def spatiofarm_guy(player: Player) -> bool:
+    spatiofarm_monsters = ["Petalo", "Gloo", "Vaporis", "Foudro"]
+    return all(player.get_kills(monster) > 0 for monster in spatiofarm_monsters)
+def killed_10_petalo(player: Player) -> bool:
+    return player.get_kills("Petalo") >= 10
+def killed_10_gloo(player: Player) -> bool:
+    return player.get_kills("Gloo") >= 10
+def killed_10_vaporis(player: Player) -> bool:
+    return player.get_kills("Vaporis") >= 10
+def killed_10_foudro(player: Player) -> bool:
+    return player.get_kills("Foudro") >= 10
+def killed_5_of_each_spatiofarm_monster(player: Player) -> bool:
+    spatiofarm_monsters = ["Petalo", "Gloo", "Vaporis", "Foudro"]
+    return all(player.get_kills(monster) >= 5 for monster in spatiofarm_monsters)
+def killed_10_of_each_spatiofarm_monster(player: Player) -> bool:
+    spatiofarm_monsters = ["Petalo", "Gloo", "Vaporis", "Foudro"]
+    return all(player.get_kills(monster) >= 10 for monster in spatiofarm_monsters)
+def killed_100_spatiofarm_monsters(player: Player) -> bool:
+    spatiofarm_monsters = ["Petalo", "Gloo", "Vaporis", "Foudro"]
+    return sum(player.get_kills(monster) for monster in spatiofarm_monsters) >= 100
+
+def astropolis_guy(player: Player) -> bool:
+    astropolis_monsters = ["Wakashoko", "Hans", "Glimmer"]
+    return all(player.get_kills(monster) > 0 for monster in astropolis_monsters)
+def killed_10_wakashoko(player: Player) -> bool:
+    return player.get_kills("Wakashoko") >= 10
+def killed_10_hans(player: Player) -> bool:
+    return player.get_kills("Hans") >= 10
+def killed_10_glimmer(player: Player) -> bool:
+    return player.get_kills("Glimmer") >= 10
+def killed_5_of_each_astropolis_monster(player: Player) -> bool:
+    astropolis_monsters = ["Wakashoko", "Hans", "Glimmer"]
+    return all(player.get_kills(monster) >= 5 for monster in astropolis_monsters)
+def killed_10_of_each_astropolis_monster(player: Player) -> bool:
+    astropolis_monsters = ["Wakashoko", "Hans", "Glimmer"]
+    return all(player.get_kills(monster) >= 10 for monster in astropolis_monsters)
+def killed_100_astropolis_monsters(player: Player) -> bool:
+    astropolis_monsters = ["Wakashoko", "Hans", "Glimmer"]
+    return sum(player.get_kills(monster) for monster in astropolis_monsters) >= 100
+
 def kill_xalith(player: Player) -> bool:
     return player.get_kills("Xa'lith, Roi du Vide") >= 1
 def kill_andariel(player: Player) -> bool:
@@ -540,7 +581,34 @@ def can_display_killed_5_of_each_meteor_monster(player: Player) -> bool:
 def can_display_killed_10_of_each_meteor_monster(player: Player) -> bool:
     return player.has_achievement('Meteor Amateur')
 def can_display_killed_100_meteor_monsters(player: Player) -> bool:
-    return player.has_achievement('killed_10_of_each_meteor_monster')
+    return player.has_achievement('Meteor Walker')
+def can_display_killed_10_petalo(player: Player) -> bool:
+    return player.has_achievement('Spatiofarm Guy')
+def can_display_killed_10_gloo(player: Player) -> bool:
+    return player.has_achievement('Spatiofarm Guy')
+def can_display_killed_10_vaporis(player: Player) -> bool:
+    return player.has_achievement('Spatiofarm Guy')
+def can_display_killed_10_foudro(player: Player) -> bool:
+    return player.has_achievement('Spatiofarm Guy')
+def can_display_killed_5_of_each_spatiofarm_monster(player: Player) -> bool:
+    return player.has_achievement('Spatiofarm Guy')
+def can_display_killed_10_of_each_spatiofarm_monster(player: Player) -> bool:
+    return player.has_achievement('Spatiofarm Amateur')
+def can_display_killed_100_spatiofarm_monsters(player: Player) -> bool:
+    return player.has_achievement('Spatiofarm Walker')
+def can_display_killed_10_wakashoko(player: Player) -> bool:
+    return player.has_achievement('Astropolis Guy')
+def can_display_killed_10_hans(player: Player) -> bool:
+    return player.has_achievement('Astropolis Guy')
+def can_display_killed_10_glimmer(player: Player) -> bool:
+    return player.has_achievement('Astropolis Guy')
+def can_display_killed_5_of_each_astropolis_monster(player: Player) -> bool:
+    return player.has_achievement('Astropolis Guy')
+def can_display_killed_10_of_each_astropolis_monster(player: Player) -> bool:
+    return player.has_achievement('Astropolis Amateur')
+def can_display_killed_100_astropolis_monsters(player: Player) -> bool:
+    return player.has_achievement('Astropolis Walker')
+
 def can_display_kill_xalith(player: Player) -> bool:
     return player.has_achievement('Enutrof')
 def can_display_kill_andariel(player: Player) -> bool:
@@ -810,6 +878,10 @@ def error_typing(player: Player, monsters: Dict[str, List[Monster]], shop_items:
 zone_requirements = {
         'meteor': None,  # Pas d'exigence pour cette zone
         'spatiofarm': 'Meteor Amateur',  # Nom de l'achievement nécessaire pour accéder à la zone
+        'astropolis': 'Spatiofarm Amateur',
+        'stellaris': 'Astropolis Amateur',
+        'xenodrome': 'Stellaris Amateur',
+        'nebulae': 'Xenodrome Amateur', 
 }
 effect_to_stat = {
     "increase_atk": "Attaque",
@@ -842,19 +914,19 @@ def main():
         player.reset()  # Reset player stats for each new session
 
         # Achievements
-        meteor_ach = Achievement('Meteor Guy', meteor_slayer, (50, 150), "Tuer tous les monstres de la zone Meteor au moins une fois.")
+        meteor_ach = Achievement('Meteor Guy', meteor_guy, (20, 150), "Tuer tous les monstres de la zone Meteor au moins une fois.")
         player.add_achievement(meteor_ach)
 
-        crocus_ach = Achievement('Destructeur de Crocus', killed_10_crocus, (100, 250), 'Tuez 10 monstres Crocus.', display_condition=can_display_killed_10_crocus)
+        crocus_ach = Achievement('Destructeur de Crocus', killed_10_crocus, (50, 250), 'Tuez 10 monstres Crocus.', display_condition=can_display_killed_10_crocus)
         player.add_achievement(crocus_ach)
 
-        lunaris_ach = Achievement('Destructeur de Lunaris', killed_10_lunaris, (100, 250), 'Tuez 10 monstres Lunaris.', display_condition=can_display_killed_10_lunaris)
+        lunaris_ach = Achievement('Destructeur de Lunaris', killed_10_lunaris, (50, 250), 'Tuez 10 monstres Lunaris.', display_condition=can_display_killed_10_lunaris)
         player.add_achievement(lunaris_ach)
 
-        eclair_ach = Achievement('Destructeur d\'Eclair', killed_10_eclair, (100, 250), 'Tuez 10 monstres Eclair.', display_condition=can_display_killed_10_eclair)
+        eclair_ach = Achievement('Destructeur d\'Eclair', killed_10_eclair, (50, 250), 'Tuez 10 monstres Eclair.', display_condition=can_display_killed_10_eclair)
         player.add_achievement(eclair_ach)
 
-        voltaic_ach = Achievement('Destructeur de Voltaic', killed_10_voltaic, (100, 250), 'Tuez 10 monstres Voltaic.', display_condition=can_display_killed_10_voltaic)
+        voltaic_ach = Achievement('Destructeur de Voltaic', killed_10_voltaic, (50, 250), 'Tuez 10 monstres Voltaic.', display_condition=can_display_killed_10_voltaic)
         player.add_achievement(voltaic_ach)
 
         all_meteor_ach_5 = Achievement('Meteor Amateur', killed_5_of_each_meteor_monster, (100, 600), 'Tuer tous les monstres de la zone Meteor au moins 5 fois.', display_condition=can_display_killed_5_of_each_meteor_monster)
@@ -865,6 +937,51 @@ def main():
 
         meteor_100_ach = Achievement('Meteor Slayer', killed_100_meteor_monsters, (500, 2500), 'Tuez 100 monstres de la Zone Meteor.', display_condition=can_display_killed_100_meteor_monsters)
         player.add_achievement(meteor_100_ach)
+
+        spatiofarm_ach = Achievement('Spatiofarm Guy', spatiofarm_guy, (150, 500), "Tuer tous les monstres de la zone Spatiofarm au moins une fois.")
+        player.add_achievement(spatiofarm_ach)
+
+        petalo_ach = Achievement('Destructeur de Petalo', killed_10_petalo, (250, 700), 'Tuez 10 monstres Petalo.', display_condition=can_display_killed_10_petalo)
+        player.add_achievement(petalo_ach)
+
+        gloo_ach = Achievement('Destructeur de Gloo', killed_10_gloo, (250, 700), 'Tuez 10 monstres Gloo.', display_condition=can_display_killed_10_gloo)
+        player.add_achievement(gloo_ach)
+
+        vaporis_ach = Achievement('Destructeur de Vaporis', killed_10_vaporis, (250, 700), 'Tuez 10 monstres Vaporis.', display_condition=can_display_killed_10_vaporis)
+        player.add_achievement(vaporis_ach)
+
+        foudro_ach = Achievement('Destructeur de Foudro', killed_10_foudro, (250, 700), 'Tuez 10 monstres Foudro.', display_condition=can_display_killed_10_foudro)
+        player.add_achievement(foudro_ach)
+
+        all_spatiofarm_ach_5 = Achievement('Spatiofarm Amateur', killed_5_of_each_spatiofarm_monster, (400, 1800), 'Tuer tous les monstres de la zone Spatiofarm au moins 5 fois.', display_condition=can_display_killed_5_of_each_spatiofarm_monster)
+        player.add_achievement(all_spatiofarm_ach_5)
+
+        all_spatiofarm_ach_10 = Achievement('Spatiofarm Walker', killed_10_of_each_spatiofarm_monster, (800, 4500), 'Tuer tous les monstres de la zone Spatiofarm au moins 10 fois.', display_condition=can_display_killed_10_of_each_spatiofarm_monster)
+        player.add_achievement(all_spatiofarm_ach_10)
+
+        spatiofarm_100_ach = Achievement('Spatiofarm Slayer', killed_100_spatiofarm_monsters, (1500, 8000), 'Tuez 100 monstres de la Zone Spatiofarm.', display_condition=can_display_killed_100_spatiofarm_monsters)
+        player.add_achievement(spatiofarm_100_ach)
+
+        astropolis_ach = Achievement('Astropolis guy', astropolis_guy, (300, 1000), "Tuer tous les monstres de la zone Astropolis au moins une fois.")
+        player.add_achievement(astropolis_ach)
+
+        hans_ach = Achievement('Destructeur de Hans', killed_10_hans, (500, 1200), 'Tuez 10 monstres Hans.', display_condition=can_display_killed_10_hans)
+        player.add_achievement(hans_ach)
+
+        wakashoko_ach = Achievement('Destructeur de Wakashoko', killed_10_wakashoko, (500, 1200), 'Tuez 10 monstres Wakashoko.', display_condition=can_display_killed_10_wakashoko)
+        player.add_achievement(wakashoko_ach)
+
+        glimmer_ach = Achievement('Destructeur de Glimmer', killed_10_glimmer, (500, 1200), 'Tuez 10 monstres Glimmer.', display_condition=can_display_killed_10_glimmer)
+        player.add_achievement(glimmer_ach)
+
+        all_astropolis_ach_5 = Achievement('Astropolis Amateur', killed_5_of_each_astropolis_monster, (800, 3000), 'Tuer tous les monstres de la zone Astropolis au moins 5 fois.', display_condition=can_display_killed_5_of_each_astropolis_monster)
+        player.add_achievement(all_astropolis_ach_5)
+
+        all_astropolis_ach_10 = Achievement('Astropolis Walker', killed_10_of_each_astropolis_monster, (1600, 6000), 'Tuer tous les monstres de la zone Astropolis au moins 10 fois.', display_condition=can_display_killed_10_of_each_astropolis_monster)
+        player.add_achievement(all_astropolis_ach_10)
+
+        astropolis_100_ach = Achievement('Astropolis Slayer', killed_100_astropolis_monsters, (3000, 12000), 'Tuez 100 monstres de la Zone Astropolis.', display_condition=can_display_killed_100_astropolis_monsters)
+        player.add_achievement(astropolis_100_ach)
 
         xalith_ach = Achievement('Xa\'lith Swagger', kill_xalith, (1000, 5000), "Tuez Xa'lith, Roi du Vide.", effect=increase_atk, effect_params=(50,), display_condition=can_display_kill_xalith)
         player.add_achievement(xalith_ach)
